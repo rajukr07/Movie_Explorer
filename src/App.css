@@ -652,3 +652,138 @@
     text-align: center;
   }
 }
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+}
+
+.search-wrapper .search-box {
+  max-width: none;
+}
+
+.suggestions-box {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  left: 0;
+  z-index: 50;
+  overflow: hidden;
+  max-height: 430px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 14px;
+  background: rgba(17, 24, 39, 0.98);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(16px);
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 13px;
+  padding: 11px 14px;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: transparent;
+  color: #ffffff;
+  text-align: left;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background: rgba(124, 58, 237, 0.18);
+}
+
+.suggestion-item img {
+  width: 48px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  object-fit: cover;
+}
+
+.suggestion-item span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.suggestion-item strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.suggestion-item small {
+  color: #9ca3af;
+}
+
+.suggestion-message {
+  margin: 0;
+  padding: 18px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.footer {
+  margin-top: 80px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: #0b1120;
+}
+
+.footer-container {
+  width: min(1200px,90%);
+  margin:auto;
+  padding:60px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:40px;
+  flex-wrap:wrap;
+}
+
+.footer-brand h2{
+  margin:0 0 10px;
+  color:#fff;
+}
+
+.footer-brand p{
+  max-width:450px;
+  color:#9ca3af;
+  line-height:1.7;
+}
+
+.footer-links{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.footer-links a{
+  color:#d1d5db;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  transition:.3s;
+}
+
+.footer-links a:hover{
+  color:#8b5cf6;
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:20px;
+  text-align:center;
+  color:#9ca3af;
+}
+
+.heart-icon{
+  color:#ef4444;
+}
+

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import MovieDetails from "./pages/MovieDetails";
 import Favorites from "./pages/Favorites";
@@ -9,13 +10,11 @@ import "./App.css";
 function App() {
   const [favorites, setFavorites] = useState(() => {
     try {
-      const savedFavorites =
-        localStorage.getItem("movieFavorites");
+      const savedFavorites = localStorage.getItem("movieFavorites");
 
-      return savedFavorites
-        ? JSON.parse(savedFavorites)
-        : [];
-    } catch {
+      return savedFavorites ? JSON.parse(savedFavorites) : [];
+    } catch (error) {
+      console.error("Failed to load favorites:", error);
       return [];
     }
   });
@@ -23,14 +22,18 @@ function App() {
   const [toast, setToast] = useState("");
 
   useEffect(() => {
-    localStorage.setItem(
-      "movieFavorites",
-      JSON.stringify(favorites)
-    );
+    try {
+      localStorage.setItem(
+        "movieFavorites",
+        JSON.stringify(favorites)
+      );
+    } catch (error) {
+      console.error("Failed to save favorites:", error);
+    }
   }, [favorites]);
 
   useEffect(() => {
-    if (!toast) return;
+    if (!toast) return undefined;
 
     const timer = setTimeout(() => {
       setToast("");
@@ -40,19 +43,18 @@ function App() {
   }, [toast]);
 
   function toggleFavorite(movie) {
-    const alreadyFavorite = favorites.some(
+    const isAlreadyFavorite = favorites.some(
       (favorite) => favorite.imdbID === movie.imdbID
     );
 
-    if (alreadyFavorite) {
+    if (isAlreadyFavorite) {
       setFavorites((previousFavorites) =>
         previousFavorites.filter(
-          (favorite) =>
-            favorite.imdbID !== movie.imdbID
+          (favorite) => favorite.imdbID !== movie.imdbID
         )
       );
 
-      setToast(`${movie.Title} removed from favorites`);
+      setToast(`${movie.Title} removed from favorites.`);
       return;
     }
 
@@ -69,7 +71,7 @@ function App() {
       favoriteMovie,
     ]);
 
-    setToast(`${movie.Title} added to favorites`);
+    setToast(`${movie.Title} added to favorites.`);
   }
 
   return (
@@ -114,6 +116,7 @@ function App() {
               <section className="page-section">
                 <div className="empty-state">
                   <h1>404 — Page Not Found</h1>
+                  <p>The page you are looking for does not exist.</p>
                 </div>
               </section>
             }
@@ -121,8 +124,10 @@ function App() {
         </Routes>
       </main>
 
+      <Footer />
+
       {toast && (
-        <div className="toast" role="status">
+        <div className="toast" role="status" aria-live="polite">
           {toast}
         </div>
       )}
