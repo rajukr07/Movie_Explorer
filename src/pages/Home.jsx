@@ -50,7 +50,7 @@ function Home({ favorites, onToggleFavorite }) {
       if (requestId === latestRequest.current) {
         setMovies([]);
         setTotalResults(0);
-        setError("unable to fetch search resultsMovies load nahi ho paayi.");
+        setError("unable to fetch search results");
       }
     } finally {
       if (requestId === latestRequest.current) {
@@ -126,7 +126,7 @@ function Home({ favorites, onToggleFavorite }) {
     const cleanSearch = searchText.trim();
 
     if (cleanSearch.length < 3) {
-      setError("please enter more the 3 charecter");
+      setError("please enter more then 3 charecters");
       return;
     }
 
