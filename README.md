@@ -24,7 +24,7 @@ A modern and responsive movie discovery web application built with **React.js**,
 * Vite
 
 ## Live Demo
-https://moviexplorer03.vercel.app/
+https://movieexplorer-puce.vercel.app/
 
 ## Repository
 
